@@ -24,14 +24,13 @@ OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 async def load_model():
     global deepfake_detector
     deepfake_detector = pipeline("video-classification", model="tayyabimam/Deepfake")
-    print("Deepfake detection model loaded")
 
 def extract_frames(video_path: str, num_frames: int = 8) -> List[str]:
     cap = cv2.VideoCapture(video_path)
     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     
     if frame_count == 0:
-        raise ValueError("can not read video frames")
+        raise ValueError("cant read video frames")
     
     frame_indices = [int(i * frame_count / num_frames) for i in range(num_frames)]
     
